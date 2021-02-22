@@ -1,0 +1,13 @@
+#!/bin/sh -e
+
+export PREFIX=""
+if [ -d 'venv' ] ; then
+    export PREFIX="venv/bin/"
+fi
+
+export PYTHONPATH=imalive
+export SIMPLE_SETTINGS=settings
+
+${PREFIX}pytest -W ignore::DeprecationWarning ${1-"./tests"} ${2}
+${PREFIX}black imalive tests/ --check --diff
+${PREFIX}flake8 imalive tests/

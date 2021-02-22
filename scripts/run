@@ -1,0 +1,7 @@
+#!/bin/sh
+set -x
+
+# if not set use default settings file
+export SIMPLE_SETTINGS=${SIMPLE_SETTINGS:=imalive.settings}
+
+PYTHONPATH=imalive venv/bin/faust -A app worker --web-port=$WORKER_PORT
